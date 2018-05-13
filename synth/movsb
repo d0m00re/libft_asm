@@ -1,0 +1,37 @@
+http://vitaly_filatov.tripod.com/ng/asm/asm_000.80.html
+
+MOVSB            Move String Byte                    Flags: not altered
+ 
+MOVSB
+ 
+          Logic:    (ES:DI)  (DS:SI)
+                    if DF = 0
+                        SI  SI + 1
+                        DI  DI + 1
+                    else
+                        SI  SI - 1
+                        DI  DI - 1
+ 
+    This instruction copies the byte pointed to by DS:SI into the location
+    pointed to by ES:DI. After the move, SI and DI are incremented (if the
+    direction flag is cleared) or decremented (if the direction flag is
+    set), to point to the next byte.
+ 
+  --------------------------------------------------------------------------
+   Operands                  Clocks   Transfers  Bytes   Example
+      -                        18         2        1     MOVSB
+   (repeat)                 9+17/rep    2/rep      1     REP MOVSB
+ 
+  -------------------------------- Example ---------------------------------
+ 
+    Assuming BUFFER1 as been defined somewhere as:
+ 
+          BUFFFER1        DB      100 DUP (?)
+ 
+    the following example moves 100 bytes from BUFFER1 to BUFFER2:
+ 
+          CLD                     ;Move in the forward direction
+          LEA     SI, BUFFER1     ;Source address to SI
+          LEA     DI, BUFFER2     ;Destination address to DI
+          MOV     CX,100          ;CX is used by the REP prefix
+  REP     MOVSB                   ;    ...and move it

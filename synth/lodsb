@@ -1,0 +1,5 @@
+lodsb
+doc : http://faydoc.tripod.com/cpu/lodsb.htm
+
+Description:
+Loads a byte, word, or doubleword from the source operand into the AL, AX, or EAX register, respectively. The source operand is a memory location, the address of which is read from the DS:EDI or the DS:SI registers (depending on the address-size attribute of the instruction, 32 or 16, respectively). The DS segment may be overridden with a segment override prefix.

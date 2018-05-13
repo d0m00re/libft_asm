@@ -1,0 +1,20 @@
+5.1.8 String Instructions
+The string instructions operate on strings of bytes, allowing them to be moved to and from memory.
+MOVS/MOVSB Move string/Move byte string.
+MOVS/MOVSW Move string/Move word string.
+MOVS/MOVSD Move string/Move doubleword string.
+CMPS/CMPSB Compare string/Compare byte string.
+CMPS/CMPSW Compare string/Compare word string.
+CMPS/CMPSD Compare string/Compare doubleword string.
+SCAS/SCASB Scan string/Scan byte string.
+SCAS/SCASW Scan string/Scan word string.
+SCAS/SCASD Scan string/Scan doubleword string.
+LODS/LODSB Load string/Load byte string.
+LODS/LODSW Load string/Load word string.
+LODS/LODSD Load string/Load doubleword string.
+STOS/STOSB Store string/Store byte string.
+STOS/STOSW Store string/Store word string.
+STOS/STOSD Store string/Store doubleword string.
+REP Repeat while ECX not zero.
+REPE/REPZ Repeat while equal/Repeat while zero.
+REPNE/REPNZ Repeat while not equal/Repeat while not zero.

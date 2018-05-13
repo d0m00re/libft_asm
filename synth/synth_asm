@@ -1,0 +1,129 @@
+COMPILATIOM:
+Pour compiler ce programme il suffit de :
+	* ajouter le header
+	* compiler le .o
+
+
+MEMORY ADRESS SPACE OF A PROCESS:
+
+	
+	stack
+	heap
+	-----
+	bss segment
+	-----
+	data segment
+	text segment
+	-----
+
+------------------------------------------------------------
+Minimum requis pour un fichier en asm:
+
+section .text
+	global start # deinission d un symbol start appaelable par la suite
+	global _main
+
+start:
+	call _main 
+	ret
+
+_main:
+	ret
+
+Tout programme commence par un point d entree commencant par start
+
+---------------------------------------------------------------
+compilation:
+	nasm -f macho64|mach minima.s -o minima.o		# en object
+	ld minima.o -macosx_version_min 10.8 -lSystem		# exe
+
+--------------------------------------------------------
+Les registres:
+64 Bit register
+rax
+rbx
+rcx
+rdx
+rsi
+rdi
+rbp
+rsp
+
+----------------------------------
+keyword --> extern : permet de specifier que c est un symbol exterieur trouvable dans les binaires
+
+.string db : donne de bit : nb  octet
+, 10 ===> retour a la ligne
+
+.len equ $ - : recuperer la taille de la string
+
+Appeler une fonction asm en langage c:
+
+mov : take rsp and moove in rbp
+mov rbp, rsp // rbp = rsp
+
+---
+_main:
+        push rbp	# scope du programme
+        mov rbp, rsp	# mise du registre de stack rsp dans le scope
+        sub rsp, 16     # 16 octet dont on se servira pas
+        lea rdi, [rel hello.string] # pour acceder au variable on doit les mettres d ans un registre
+        call _printf # appeler la fonction [printf
+        leave # enlever la stack, retour a l etat initial
+        ret
+
+--
+faire un appel system
+interruption entre partie utilisateur et le noyeau
+
+--
+Usefull link:
+https://en.wikipedia.org/wiki/X86_calling_conventions
+https://stackoverflow.com/questions/2535989/what-are-the-calling-conventions-for-unix-linux-system-calls-on-i386-and-x86-6
+--
+Parameters for system call :
+	%rdi, %rsi, %rdx, %rcx, %r8 and %r9
+
+--
+return value is in %eax
+
+----
+cmp : compare value of tzo specified operands
+
+---
+Les condition:
+IF x < y : jl
+IF x <= y : jle
+IF x > y : jg
+IF x >= y : jge
+IF x == y : je
+IF x != y : jne
+
+-------
+
+Instruction zarbi:
+repne: Cette instruction est utilisé comme préfixe avec d'autres instructions pour effectuer des répétitions d'instructions jusqu'à ce que CX = 0 ou tant que l'indicateur ZF = 1.
+
+scas:
+	instruction use to scan a string (SCAS = Scan a string). Compare par rapport a l accumulator:
+		al, ax, ou eax par rapport a la valeur actuel pointe par ES:[EDI]
+https://www.aldeid.com/wiki/X86-assembly/Instructions/scasb
+	scasb : 
+		searches the memory for the byte in EAX, starting at EDI
+		--> Compare un byte de memoire avec le registre AL
+		--> incremente RDI de 1
+		->> decremente RCX de 1
+	
+cld : Clears the DF flag in the EFLAGS register. When the DF flag is set to 0, string operations increment the index registers (ESI and/or EDI).
+
+--
+http://faydoc.tripod.com/cpu/movsb.htm
+movsb : Move byte at address DS:(E)SI to address ES:(E)DI
+movsw : Move word ...
+movsd : Mobe d2 word
+
+--
+syscall specific error:
+ataguiro : Pour les retours de read et write, si ce sont directement les syscall que t'as appelé (avec l'instruction syscall), tu peux check une erreur avec le flag carry du registre ELFAGS
+Sur Mac OS X, ce flag est mit à 1 par les syscall en cas d'erreur, un `jc error` suffit donc.
+Sinon, concernant le fd négatif donne le à bouffer aux syscall read et write ils géreront l'erreur tous seuls
