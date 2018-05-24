@@ -9,10 +9,10 @@ _ft_strcat:
 .iter:
 	mov cl, [rdi]
 	cmp cl, 0
-	je .copy
+	je .copy ; if we find 0 we jump in copy
 	inc rdi
-	jmp .iter
+	jmp .iter ; or iterate
 .copy:
-	call _ft_strcpy
+	call _ft_strcpy ; copy string data
 	leave
 	ret

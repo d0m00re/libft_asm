@@ -1,5 +1,5 @@
 CC=nasm -f macho64
-#CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall #-Werror -Wextra
 NAME=libft.a
 SRC_PATH=srcs
 OBJ_PATH=srcs
@@ -25,7 +25,8 @@ COL_WHITE		= \033[1;37m
 ##################################################
 
 SRC_M_LIBFT = ft_bzero.s   ft_isalnum.s ft_isascii.s ft_isprint.s ft_memset.s  ft_strcat.s  ft_strdup.s  ft_tolower.s\
-ft_cat.s     ft_isalpha.s ft_isdigit.s ft_memcpy.s  ft_puts.s    ft_strcpy.s  ft_strlen.s  ft_toupper.s ft_min_max.s
+ft_cat.s     ft_isalpha.s ft_isdigit.s ft_memcpy.s  ft_puts.s    ft_strcpy.s  ft_strlen.s  ft_toupper.s ft_min_max.s\
+ft_strreplace.s ft_strchr.s sum_uint_tab.s
 
 #################################################
 ### OBJECT

@@ -90,6 +90,8 @@ return value is in %eax
 ----
 cmp : compare value of tzo specified operands
 
+----
+leave : restore la stack
 ---
 Les condition:
 IF x < y : jl

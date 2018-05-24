@@ -1,25 +1,6 @@
 global _ft_strcpy
 
 ; rdi, rsi
-_ft_strcpy2:
-	push rbp
-	mov rbp, rsp
-	mov r11, rdi
-.Cp:
-	mov cl, [rsi]; // ici on copie caractere par caractere
-	mov [rdi], cl;
-	cmp  cl, 0
-	je .End
-	inc rsi
-	inc rdi
-	jmp .Cp
-	.End:
-		mov rax, r11
-		movsb
-		leave
-		ret
-
-; rdi, rsi
 _ft_strcpy:
         push rbp
         mov rbp, rsp
@@ -30,5 +11,5 @@ _ft_strcpy:
         jne .Cpp ; tant que actual_char != 0 --> loop
 
 	movsd ; copy last bit
-	leave
+	leave; restore stack and restore frame pointeur
 	ret

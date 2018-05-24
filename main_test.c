@@ -32,6 +32,8 @@ int test_min_max();
 
 char *str = "QWERTasdsfdgdfjk64+--+/*-+YUIOPOKJHGFDSXC BNLM:{P{()*&^%$#";
 
+int test_sum_uint_tab();
+
 int main()
 {
 	/*printf("---> %d\n", test_puts());
@@ -47,8 +49,34 @@ int main()
 	printf("Test ft_memset : %d\n", test_memset());
 	printf("Test ft_memcpy : %d\n", test_memcpy());*/
 	//printf("Test strdup : %d\n", test_strdup());
-	printf("Test min max : %d\n", test_min_max());
+	//printf("Test min max : %d\n", test_min_max());
+/*
+	char *test; test = malloc(100); ft_strcpy(test, "Testouille");
+	printf("---> %s | %p\n", test, test);
+	
+	//ft_strreplace(test, 's', 'S');
+	char *test2;
+	test2 = ft_strchr(test, '8');
+
+	printf("--> %s | %s | %p\n", test, test2, test);
+*/
+	test_sum_uint_tab();
 	return (0);
+}
+
+int test_sum_uint_tab()
+{
+	unsigned int tab[10];
+	unsigned int c = 0;
+
+	// 1 + 2 + 3 
+	while (c < 10)
+	{
+		tab[c] = c + 1;
+		c++;
+	}
+	printf("---> sum : %u\n", sum_uint_tab(tab, 10));
+	return (1);
 }
 
 int test_min_max()

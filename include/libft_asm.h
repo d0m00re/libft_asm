@@ -39,9 +39,18 @@ char *ft_strdup(const char *s1);
 
 int ft_cat(int fd);
 
+
+// =========== BONUS ============
 // fonction supplementaire
 
 int ft_min(int a, int b);
 int ft_max(int a, int b);
+
+// replace each target char by new character
+void	ft_strreplace(char *str, char target, char new);
+
+char *ft_strchr(const char *s, int c); // return first char
+
+unsigned int sum_uint_tab(unsigned int *tab, unsigned int size);
 
 #endif
