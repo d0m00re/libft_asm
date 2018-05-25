@@ -33,16 +33,13 @@ int test_min_max();
 char *str = "QWERTasdsfdgdfjk64+--+/*-+YUIOPOKJHGFDSXC BNLM:{P{()*&^%$#";
 
 int test_sum_uint_tab();
+int test_moy_uint_tab();
 
-int main(int a, char **s)
+int main(void)
 {
 	int fd;
 	
-	if (a != 2)
-		exit(1);
-	fd = open(s[1], O_RDONLY);
-	return (ft_cat(fd));
-/*	printf("---> %d\n", test_puts());
+	//printf("---> %d\n", test_puts());
 	printf("Test is alpha : %d\n", test_isalpha());
 	printf("Test is digit : %d\n", test_isdigit());
 	printf("Test is alnum : %d\n", test_isalnum());
@@ -68,6 +65,26 @@ int main(int a, char **s)
 
 	test_sum_uint_tab();*/
 	return (0);
+}
+
+int test_bzero()
+{
+	char test[10];
+	char test2[10];
+	int ret = 0;
+
+	strcpy(test, "012345678");
+	strcpy(test2, "012345678");
+	bzero(test, 4);
+	ft_bzero(test2, 4);
+	ret |= strncmp(test, test2, 10);
+
+	bzero(test, 10);
+        ft_bzero(test2, 10);
+
+	
+	ret |= strncmp(test, test2, 10);
+	return (ret == 0);
 }
 
 int test_sum_uint_tab()
@@ -96,17 +113,26 @@ int test_min_max()
 //void *memset(void *b, int c, size_t len);
 int test_memset()
 {
+	int ret = 0;
 	char st[2][100];
 	char *goo = "coucou";
 
 	char *s1;
 	char *s2;
 
+        s1 = memset(st[0], '*', 20);
+        s2 = ft_memset(st[1], '*', 20);
+
+	ret |= (strncmp(s1, s2, 20) != 0 && strncmp(st[0], st[1], 20));
+
 	s1 = memset(st[0], '*', 90);
 	s2 = ft_memset(st[1], '*', 90);
 
-	//memset(0, 0, 100);
-	return (!(strncmp(s1, s2, 90)));
+	ret |= (strncmp(s1, s2, 90) != 0 && strncmp(st[0], st[1], 90));
+
+	// segfault ou abort dans le cas de data trop petite	
+
+	return (ret == 0);
 }
 int test_memcpy()
 {
@@ -120,9 +146,6 @@ int test_memcpy()
 	s2 = ft_memcpy(st[1], "salopee", 7);
 	st[0][7] = 0;
 	st[1][7] = 0;
-
-	printf("s1 --> %s\n", st[0]);
-	printf("s2 --> %s\n", st[1]);
 
 	s1 = memcpy(st[0], "salopee", 7);
 
@@ -145,27 +168,13 @@ int test_strdup()
 	return (1);
 }
 
-int test_bzero()
-{
-/*
-	char test[10];
-	char *test2 = "coucou toi :)";
-	int ret;
-
-	ret = ft_bzero(test2, 10);*/
-	return (1);
-}
-
-
 int test_strlen()
 {
 	char *coucou = "Salope";
 	char *coucou2 = "";
 
-	if (ft_strlen(coucou) != strlen("coucou") || ft_strlen(coucou2) != ft_strlen(coucou2))
+	if (ft_strlen(coucou) != strlen("coucou") || ft_strlen(coucou2) != ft_strlen(coucou2)) //|| ft_strlen(0) != ft_strlen(0))
 		return (0);
-	//ft_strlen(0);
-	//strlen(0);
 	return (1);
 }
 

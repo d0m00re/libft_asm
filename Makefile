@@ -46,13 +46,15 @@ OBJ_M_L=$(addprefix ./$(OBJ_PATH)/, $(OBJ_M_LIBFT))
 ### RULES
 ##################################################
 
+.phony: all clean fclean re
+
 all: $(NAME)
 
 $(NAME): $(OBJ_M_L)
 	@echo "$(COL_GREEN)COMPILATION DONE"
 	@ar rc $(NAME) $(OBJ_M_L)
 
-$(OBJ_M_L): $(OBJ_PATH)%.o : $(SRC_PATH)/$(SRC_M_LIBFT_PATH)%.s
+$(OBJ_M_L): $(OBJ_PATH)%.o : $(SRC_PATH)/$(SRC_M_LIBFT_PATH)%.s include/libft_asm.h
 	@echo "$(COL_BLUE)[ COMPILE & ASSEMBLE STEPS : LIB ORI BITCH ] \n"
 	@$(CC) $(CFLAGS) $< -o $@ -I $(INC_PATH)
 

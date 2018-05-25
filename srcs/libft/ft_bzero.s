@@ -16,6 +16,5 @@ _ft_bzero:
 	cmp rsi, rcx ; tant que n est different de 0 on boucle
 	jne .loop
 .end:
-	mov rax, rsi
 	leave
 	ret
