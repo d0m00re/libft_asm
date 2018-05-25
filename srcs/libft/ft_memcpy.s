@@ -1,6 +1,20 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    ft_memcpy.s                                        :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: alhelson <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2018/05/25 05:19:56 by alhelson          #+#    #+#              #
+#    Updated: 2018/05/25 05:19:58 by alhelson         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 ;void * memcpy(void *restrict dst, const void *restrict src, size_t n);
 ;rax		rdi				rsi,		rdx
-global _ft_memcpy
+
+section .text
+	global _ft_memcpy
 
 _ft_memcpy:
 	push rbp

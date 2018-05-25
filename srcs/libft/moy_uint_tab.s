@@ -1,6 +1,19 @@
-global _moy_uint_tab
-extern _sum_uint_tab
-; unsigned int moy(usi int *ab, size_t size)
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    moy_uint_tab.s                                     :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: alhelson <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2018/05/25 05:21:59 by alhelson          #+#    #+#              #
+#    Updated: 2018/05/25 05:22:00 by alhelson         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+section .text
+	global _moy_uint_tab
+	extern _sum_uint_tab
+
 _moy_uint_tab:
 	push rbp
 	mov rbp, rsp

@@ -5,70 +5,118 @@
 #include <strings.h>
 #include <fcntl.h>
 #include <ctype.h>
-
-/* 
-** first part bitch
-*/
-
-int test_bzero();
-int test_strcat();
-int test_isalpha();
-int test_isdigit();
-int test_isalnum();
-int test_isascii();
-int test_isprint();
-int test_toupper();
-int test_tolower();
-int test_puts();
-
-int test_strlen();
+#include <unistd.h>
 
 
-int test_memset();
-int test_memcpy();
-int test_strdup();
+int test_bzero(void);
+int test_strcat(void);
+int test_isalpha(void);
+int test_isdigit(void);
+int test_isalnum(void);
+int test_isascii(void);
+int test_isprint(void);
+int test_toupper(void);
+int test_tolower(void);
+int test_puts(void);
 
-int test_min_max();
+int test_strlen(void);
+
+
+int test_memset(void);
+int test_memcpy(void);
+int test_strdup(void);
+
+int test_min_max(void);
 
 char *str = "QWERTasdsfdgdfjk64+--+/*-+YUIOPOKJHGFDSXC BNLM:{P{()*&^%$#";
 
-int test_sum_uint_tab();
-int test_moy_uint_tab();
+int test_sum_uint_tab(void);
+int test_moy_uint_tab(void);
+
+int test_ft_strreplace(void);
+int test_ft_strchr(void);
+
+int main2(int ac, char **av)
+{
+	int c;
+	int fd;
+
+	c = 1;
+	if (ac < 2)
+		return (1);
+	while (c < ac)
+	{
+		fd = open(av[c], O_RDONLY);
+		if (fd > -1)
+		{
+			ft_cat(fd);
+			close(fd);
+		}
+		c++;
+	}
+	return (1);
+}
 
 int main(void)
 {
 	int fd;
-	
-	//printf("---> %d\n", test_puts());
-	printf("Test is alpha : %d\n", test_isalpha());
-	printf("Test is digit : %d\n", test_isdigit());
-	printf("Test is alnum : %d\n", test_isalnum());
-	printf("Test is ascii : %d\n", test_isascii());
-	printf("Test is print : %d\n", test_isprint());
-	printf("Test is toupper : %d\n", test_toupper());
-	printf("Test is tolower : %d\n", test_tolower());
-	printf("Test bzero : %d\n", test_bzero());
-	printf("Tets ft_strlen : %d\n", test_strlen());
-	printf("Test ft_memset : %d\n", test_memset());
-	printf("Test ft_memcpy : %d\n", test_memcpy());
-	printf("Test ft_strcat : %d\n", test_strcat());
-//	printf("Test strdup : %d\n", test_strdup());
-//	printf("Test min max : %d\n", test_min_max());
-/*
-	char *test; test = malloc(100); ft_strcpy(test, "Testouille");
-	printf("---> %s | %p\n", test, test);
-	
-	//ft_strreplace(test, 's', 'S');
-	char *test2;
-	test2 = ft_strchr(test, '8');
 
-	printf("--> %s | %s | %p\n", test, test2, test);
+	ft_puts("LIBFT ASM :)");
+	puts("LIBFT ASM :)\n");
+	ft_puts(0);
+	puts(0);
+	    puts("---------------------------FIN DE TEST DE PUTS ---------------------------");	
+	puts("\n\n --------------------------PART ONE-------------------------------");
+	printf("1) Test bzero : %d\n", test_bzero());
+	printf("2) Test ft_strcat : %d\n", test_strcat());
+	printf("1) Test is alpha : %d\n", test_isalpha());
+	printf("4) Test is digit : %d\n", test_isdigit());
+	printf("5) Test is alnum : %d\n", test_isalnum());
+	printf("6) Test is ascii : %d\n", test_isascii());
+	printf("7) Test is print : %d\n", test_isprint());
+	printf("8) Test is toupper : %d\n", test_toupper());
+	printf("9) Test is tolower : %d\n", test_tolower());
 
-	test_sum_uint_tab();*/
+	puts("\n\n --------------------------PART TWO-------------------------------");
+	printf("1) Test ft_strlen : %d\n", test_strlen());
+	printf("2) Test ft_memset : %d\n", test_memset());
+	printf("3) Test ft_memcpy : %d\n", test_memcpy());
+	printf("4) Test strdup : %d\n", test_strdup());
+
+	puts("\n\n --------------------------PART TWO-------------------------------");
+	printf("1-2) Test min max : %d\n", test_min_max());
+        printf("4) Test is majus : %d\n", ft_ismajus('a') == 0 && ft_ismajus('A') == 1 && ft_ismajus(' ') == 0);
+        printf("5) Test is minus : %d\n", ft_isminus('a') == 1 && ft_isminus('A') == 0 && ft_isminus(' ') == 0);	
+	printf("6-7) Test somme/moyenne tab de int : %d\n", test_sum_uint_tab());
+	printf("8) Test ft_strreplace : %d\n", test_ft_strreplace());
+	printf("9) Test strchr : %d\n", test_ft_strchr());
 	return (0);
 }
 
-int test_bzero()
+int test_ft_strreplace(void)
+{
+	char str[4][20];
+
+	strcpy(str[0], "coucou toi");
+
+	ft_strreplace(str[0], 'c', 'C');
+	ft_strreplace(0, 'c', 'C');
+	return (strcmp(str[0], "CouCou toi") == 0);
+}
+
+int test_ft_strchr(void)
+{
+	char *str1 = "Coucou john";
+	char *str2 = "";
+
+	if (ft_strchr(str1, 'j') !=strchr(str1, 'j'))
+		return (0);
+        if (ft_strchr(str1, 0) !=strchr(str1, 0))
+                return (0);
+	return (1);
+}
+
+int test_bzero(void)
 {
 	char test[10];
 	char test2[10];
@@ -88,31 +136,26 @@ int test_bzero()
 	return (ret == 0);
 }
 
-int test_sum_uint_tab()
+int test_sum_uint_tab(void)
 {
 	unsigned int tab[10];
 	unsigned int c = 0;
-
-	// 1 + 2 + 3 
+	
 	while (c < 10)
 	{
 		tab[c] = c + 1;
 		c++;
 	}
-	printf("---> sum : %u\n", sum_uint_tab(tab, 10));
-	printf("---> moy : %u\n", moy_uint_tab(tab, 10));
-	return (1);
+	return (sum_uint_tab(tab, 10) == 55 && moy_uint_tab(tab, 10) == 10 && moy_uint_tab(0, 0) == 0 && sum_uint_tab(0, 0) == 0 &&\
+		moy_uint_tab(tab, 0) == 0 && sum_uint_tab(tab, 0) == 0 && moy_uint_tab(0, 10) == 0 && sum_uint_tab(0, 10) == 0);
 }
 
-int test_min_max()
+int test_min_max(void)
 {
-	printf("%d < %d\n", ft_min(-100, 200), ft_max(-100, 200));
-	//return (ft_min(50, 10) < ft_max(50, 10) &&
-	return (ft_min(-100, 200) < ft_max(-100, 200));
+	return (ft_min(100, 200) < ft_max(100, 200) && ft_min(100000000, 200000000) > ft_max(1000, 200000));
 }
 
-//void *memset(void *b, int c, size_t len);
-int test_memset()
+int test_memset(void)
 {
 	int ret = 0;
 	char st[2][100];
@@ -130,12 +173,10 @@ int test_memset()
 	s2 = ft_memset(st[1], '*', 90);
 
 	ret |= (strncmp(s1, s2, 90) != 0 && strncmp(st[0], st[1], 90));
-
-	// segfault ou abort dans le cas de data trop petite	
-
 	return (ret == 0);
 }
-int test_memcpy()
+
+int test_memcpy(void)
 {
 	char st[2][100];
 	char rouf[] = "Miaou miaou miaou dsg fdd sad ghg fdx vb gfx o";
@@ -153,23 +194,36 @@ int test_memcpy()
 	return (!(strncmp(st[0], st[1], 7)));
 }
 
-int test_strdup()
+int test_strdup(void)
 {
 	char *str;
 	char *str2;
+	int ret;
 
-	//str = ft_strdup("coucou toi :)\n");
-	str2 = ft_strdup("va te faire enculer pd\n");
-
-	//printf("---> %s - %s\n", str, str2);
-	printf("--->%s|%d|%d|%p\n", str2, str2[0], str2[0], str2);
+	ret = 0;
+	str =  strdup("ee");
+	str2 = ft_strdup("ee");
+	ret |= strcmp(str, str2);
 	free(str);
 	free(str2);
-	//ft_strdup(0);
-	return (1);
+	str = 0;
+	str2 = 0;
+        str =  strdup("yo man");
+        str2 = ft_strdup("yo man");
+        ret |= strcmp(str, str2);
+        free(str);
+        free(str2);
+        str = 0;
+        str2 = 0;
+        str =  strdup("");
+        str2 = ft_strdup("");
+        ret |= strcmp(str, str2);
+        free(str);
+        free(str2);
+	return (!ret);
 }
 
-int test_strlen()
+int test_strlen(void)
 {
 	char *coucou = "Salope";
 	char *coucou2 = "";
@@ -179,51 +233,29 @@ int test_strlen()
 	return (1);
 }
 
-int test_strcat()
+int test_strcat(void)
 {
-	char str[20][100];
-	//char *str2 = "Miaou";
-	//char str3[10] = "test"; str3[0] = 0;
+	char str[2][100];
+	char *s1;
+	char *s2;
+	int ret;
 
+	ret = 0;
 	strcpy(str[0], "a string ");
 	strcpy(str[1], "a string ");
-
-	printf("(%s|%s)\n", str[0],str[1]);
-
-        //ft_strcat(str[0], str2);
-        //strcat(str[1], str2);
-
-	char *s1, *s2;
-
 	s1 = ft_strcat(str[0], "This is");
 	s2 = strcat(str[1],    "This is");	
+	ret |= (strcmp(str[0], str[1]) == 0 && strcmp(s1, s2) == 0);
+	if (!ret)
+		return (0);
+	s1 = ft_strcat(str[0], "yo");
+	s2 = strcat(str[1],    "yo");
+	ret |= (strcmp(str[0], str[1]) == 0 && strcmp(s1, s2) == 0);
 
-	printf("(%s+%s)\n", str[0], str[1]);
-	printf("(%s+%s)\n", s1, s2);
-	//if (strcmp(str[0], str[1]))
-	//	return (0);
-
-	//char *a, *b;
-
-        //strcpy(str[2], "This is|");
-       // strcpy(str[3], "This is|");
-
-        //a = strcat(str[2], str3);
-        //b = ft_strcat(str[3], str3);	
-
-	//strcat(0, 0);
-
-	printf("%s | %s\n", str[2], str[3]);
-	//printf("-->%s\n", b);
-	//printf("-->%s\n", a);
-        //if (strcmp(str[2], str[3]))
-        //        return (0);
-
-
-	return (1);
+	return (ret);
 }
 
-int test_isalpha()
+int test_isalpha(void)
 {
 	unsigned int c = 0;
 
@@ -236,7 +268,7 @@ int test_isalpha()
 	return (1);
 }
 
-int test_isdigit()
+int test_isdigit(void)
 {
         unsigned int c = 0;
 
@@ -248,7 +280,7 @@ int test_isdigit()
         }
         return (1);
 }
-int test_isalnum()
+int test_isalnum(void)
 {
         unsigned int c = 0;
 
@@ -260,7 +292,7 @@ int test_isalnum()
         }
         return (1);
 }
-int test_isascii()
+int test_isascii(void)
 {
         unsigned int c = 0;
 
@@ -272,8 +304,8 @@ int test_isascii()
         }
         return (1);
 }
-#include <ctype.h>
-int test_isprint()
+
+int test_isprint(void)
 {
         unsigned int c = 0;
 
@@ -285,7 +317,7 @@ int test_isprint()
         }
         return (1);
 }
-int test_toupper()
+int test_toupper(void)
 {
         unsigned int c = 0;
 
@@ -297,7 +329,7 @@ int test_toupper()
         }
         return (1);
 }
-int test_tolower()
+int test_tolower(void)
 {
         unsigned int c = 0;
 
@@ -311,7 +343,7 @@ int test_tolower()
 }
 int test_puts(void)
 {
-	int ret[10];
+	int ret[6];
 
 	ret[0] = ft_puts("Coucouxxx\nx");
 	ret[1] = ft_puts("");
@@ -325,103 +357,3 @@ int test_puts(void)
 	printf("puts : %d %d %d\n", ret[3], ret[4], ret[5]);
 	return (ret[0] == ret[3] && ret[1] == ret[4] && ret[2] == ret[5]);
 }
-
-/*
-void test_cat(char *str)
-{
-	//ft_cat(-1000);
-	int fd;
-
-	//fd = open(str, O_RDONLY);
-	//printf("----> %d\n", fd);
-	fd = ft_cat(1000);
-	//printf("----> %d\n", fd);
-}
-*/
-/*
-void test_strdup()
-{
-	char *test = "Salope.\0";
-	char *test_dup;
-
-	test_dup = ft_strdup(test);
-	//ft_strcpy(test_dup, test);
-	printf("---> %p|%p\n", test_dup, test);
-	printf("---> %s\n", test_dup);
-}
-*/
-/*
-void test_memcpy()
-{
-	int c;
-	void *o;
-	void *test;
-
-	test = malloc(100);
-	//o = ft_memset(test, 10, 10);
-	o = memcpy(test, 0, 4);
-	c = 0;
-	printf("---> %s\n", o);
-}
-*/
-/*
-void test_memset()
-{
-	//char *coucou = "Salope des montagnes ...";
-	int c;
-	void *o;
-	void *test;
-
-	test = malloc(100);
-	o = ft_memset(test, 10, 10);
-	c = 0;
-	while (c  < 100)
-	{
-		printf("%d | ", *(unsigned char *)(&o[c]));
-		c++;
-	}
-}*/
-/*
-void test_strcpy()
-{
-	char *test;
-	int c;
-
-	c = 0;
-	test = malloc(100);
-	while (c < 100)
-	{
-		test[c] = 0;
-		c++;
-	}
-	printf("-%p\n", test);
-	ft_strcpy(test, "RORrfjkdfgjpsfdjpjhjt");
-	printf("-%p\n", test);
-	printf("---> %s\n", test);
-	return ;
-}
-
-
-void test_strcat()
-{
-	char *str = "Coucou";
-	char *str2;
-	int c = 0;
-
-	str2 = malloc(100);
-	printf("----> %p | %p\n", str, str2);
-	while (c < 100)
-	{
-		str2[c] = 0;
-		c++;
-	}
-	str2 = ft_strcpy(str2, "Test : \0");
-	printf("---> %s\n", str2);
-	ft_strcat(str2, "Salope.\0");
-	printf("---> %s\n", str2);
-	//str = 
-	//printf("----> %p | %p\n", str, str2);
-	//str2 = ft_strcat(str2, "salope\0");
-	//printf("--> %c\n", str[0]);
-}
-*/

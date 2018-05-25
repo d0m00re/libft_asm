@@ -1,6 +1,19 @@
-global _ft_isminus
-global _ft_ismajus
-global _ft_isalpha
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    ft_isalpha.s                                       :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: alhelson <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2018/05/25 05:19:31 by alhelson          #+#    #+#              #
+#    Updated: 2018/05/25 05:19:32 by alhelson         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+section .text
+	global _ft_isminus
+	global _ft_ismajus
+	global _ft_isalpha
 
 _ft_isminus:
         cmp rdi, 'a' ; '0'
