@@ -9,31 +9,32 @@ _ft_strdup:
 	push rbp
 	mov rbp, rsp
 
-len:
-	push rdi ;on sauve le registre rdi dans la stack
-	; recuperer la taille - rdi est deja present
-	call _ft_strlen
-	push rax ; push de la taille dans la pille
+	len:
+		push rdi ;on sauve le registre rdi dans la stack
+		; recuperer la taille - rdi est deja present
+		call _ft_strlen
+		push rax ; push de la taille dans la pille
 	
-	; allocation dynamique
+		; allocation dynamique
+		; | rax : size len
+		; | rdi : adresse d origine
+		; | pile
+	alloc:	
+		call _malloc
+		cmp rax, 0 ; case null
+		je end
+		push rax;
 
-; | rax : size len
-; | rdi : adresse d origine
-; | pile
-alloc:	
-	call _malloc
-	push rax;
-
-; | rax : addr bitch of new memories
-; | rax : size_len
-; | rdi : adress origin
-; | stack
-copy:
-	pop rdi ; dst
-	pop rdx ; src
-	pop rsi ; src
-	; copie de la memoire
-	call _ft_memcpy
-end:
-	leave
-	ret
+	; | rax : addr bitch of new memories
+	; | rax : size_len
+	; | rdi : adress origin
+	; | stack
+	copy:
+		pop rdi ; dst
+		pop rdx ; src
+		pop rsi ; src
+		; copie de la memoire
+		call _ft_memcpy
+	end:
+		leave
+		ret

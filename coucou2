@@ -1,3 +1,4 @@
+coucou je suis a 42
 CC=nasm -f macho64
 CFLAGS = -Wall -Werror
 NAME=libft.a

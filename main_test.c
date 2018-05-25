@@ -34,9 +34,15 @@ char *str = "QWERTasdsfdgdfjk64+--+/*-+YUIOPOKJHGFDSXC BNLM:{P{()*&^%$#";
 
 int test_sum_uint_tab();
 
-int main()
+int main(int a, char **s)
 {
-	/*printf("---> %d\n", test_puts());
+	int fd;
+	
+	if (a != 2)
+		exit(1);
+	fd = open(s[1], O_RDONLY);
+	return (ft_cat(fd));
+/*	printf("---> %d\n", test_puts());
 	printf("Test is alpha : %d\n", test_isalpha());
 	printf("Test is digit : %d\n", test_isdigit());
 	printf("Test is alnum : %d\n", test_isalnum());
@@ -47,10 +53,10 @@ int main()
 	printf("Test bzero : %d\n", test_bzero());
 	printf("Tets ft_strlen : %d\n", test_strlen());
 	printf("Test ft_memset : %d\n", test_memset());
-	printf("Test ft_memcpy : %d\n", test_memcpy());*/
-	//printf("Test strdup : %d\n", test_strdup());
-	//printf("Test min max : %d\n", test_min_max());
-/*
+	printf("Test ft_memcpy : %d\n", test_memcpy());
+	printf("Test strdup : %d\n", test_strdup());
+	printf("Test min max : %d\n", test_min_max());
+
 	char *test; test = malloc(100); ft_strcpy(test, "Testouille");
 	printf("---> %s | %p\n", test, test);
 	
@@ -59,8 +65,8 @@ int main()
 	test2 = ft_strchr(test, '8');
 
 	printf("--> %s | %s | %p\n", test, test2, test);
-*/
-	test_sum_uint_tab();
+
+	test_sum_uint_tab();*/
 	return (0);
 }
 
@@ -76,6 +82,7 @@ int test_sum_uint_tab()
 		c++;
 	}
 	printf("---> sum : %u\n", sum_uint_tab(tab, 10));
+	printf("---> moy : %u\n", moy_uint_tab(tab, 10));
 	return (1);
 }
 
@@ -90,6 +97,7 @@ int test_min_max()
 int test_memset()
 {
 	char st[2][100];
+	char *goo = "coucou";
 
 	char *s1;
 	char *s2;
@@ -133,6 +141,7 @@ int test_strdup()
 	printf("--->%s|%d|%d|%p\n", str2, str2[0], str2[0], str2);
 	free(str);
 	free(str2);
+	//ft_strdup(0);
 	return (1);
 }
 
