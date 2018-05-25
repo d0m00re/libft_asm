@@ -51,9 +51,10 @@ int main(void)
 	printf("Tets ft_strlen : %d\n", test_strlen());
 	printf("Test ft_memset : %d\n", test_memset());
 	printf("Test ft_memcpy : %d\n", test_memcpy());
-	printf("Test strdup : %d\n", test_strdup());
-	printf("Test min max : %d\n", test_min_max());
-
+	printf("Test ft_strcat : %d\n", test_strcat());
+//	printf("Test strdup : %d\n", test_strdup());
+//	printf("Test min max : %d\n", test_min_max());
+/*
 	char *test; test = malloc(100); ft_strcpy(test, "Testouille");
 	printf("---> %s | %p\n", test, test);
 	
@@ -180,22 +181,44 @@ int test_strlen()
 
 int test_strcat()
 {
-	char str[2][100];
-	
-	char *str2 = "Salope";
+	char str[20][100];
+	//char *str2 = "Miaou";
+	//char str3[10] = "test"; str3[0] = 0;
 
-	strcpy(str[0], "");
-	strcpy(str[1], "");
+	strcpy(str[0], "a string ");
+	strcpy(str[1], "a string ");
 
-        ft_strcat(str[0], str2);
-        strcat(str[1], str2);
-	ft_strcat(str[0], str2);
-	strcat(str[1], str2);	
-	printf("%s", str[0]);
-	printf(" | %s\n", str[1]);
-	if (strcmp(str[0], str[1]))
-		return (0);
-	
+	printf("(%s|%s)\n", str[0],str[1]);
+
+        //ft_strcat(str[0], str2);
+        //strcat(str[1], str2);
+
+	char *s1, *s2;
+
+	s1 = ft_strcat(str[0], "This is");
+	s2 = strcat(str[1],    "This is");	
+
+	printf("(%s+%s)\n", str[0], str[1]);
+	printf("(%s+%s)\n", s1, s2);
+	//if (strcmp(str[0], str[1]))
+	//	return (0);
+
+	//char *a, *b;
+
+        //strcpy(str[2], "This is|");
+       // strcpy(str[3], "This is|");
+
+        //a = strcat(str[2], str3);
+        //b = ft_strcat(str[3], str3);	
+
+	//strcat(0, 0);
+
+	printf("%s | %s\n", str[2], str[3]);
+	//printf("-->%s\n", b);
+	//printf("-->%s\n", a);
+        //if (strcmp(str[2], str[3]))
+        //        return (0);
+
 
 	return (1);
 }

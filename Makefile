@@ -1,6 +1,6 @@
 CC=nasm -f macho64
 CFLAGS = -Wall -Werror
-NAME=libft.a
+NAME=libfts.a
 SRC_PATH=srcs
 OBJ_PATH=srcs
 INC_PATH=includes
